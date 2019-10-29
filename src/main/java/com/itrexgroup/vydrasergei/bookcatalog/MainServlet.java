@@ -1,18 +1,16 @@
-package com.itrexgroup.servlet_catalog_project;
+package com.itrexgroup.vydrasergei.bookcatalog;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
-        out.print("<h1>Hello Servlet</h1>");
+        req.getRequestDispatcher("main_page.jsp").forward(req, resp);
     }
 
     @Override

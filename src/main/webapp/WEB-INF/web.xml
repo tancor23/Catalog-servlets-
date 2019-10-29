@@ -4,7 +4,7 @@
 
     <servlet>
         <servlet-name>mainServlet</servlet-name>
-        <servlet-class>com.itrexgroup.servlet_catalog_project.MainServlet</servlet-class>
+        <servlet-class>com.itrexgroup.vydrasergei.bookcatalog.MainServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
