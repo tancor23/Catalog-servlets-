@@ -25,9 +25,9 @@ public abstract class GenericDAO<O, K> {
 
     public abstract O findById(K id) throws DAOException;
 
-    public abstract List<O> findAll();
+    public abstract List<O> findAll() throws DAOException;
 
-    public abstract O update(O entity);
+    public abstract O update(O entity) throws DAOException;
 
-    public abstract boolean delete(K id);
+    public abstract boolean delete(K id) throws DAOException;
 }

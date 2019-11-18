@@ -14,8 +14,8 @@ public abstract class UserDAO extends GenericDAO<User, Long> {
 
     public abstract boolean createUser(User user, long hashPassword) throws DAOException;
 
-    public abstract boolean isLoginInUse(String login) throws DAOException;
+    //public abstract boolean isLoginInUse(String login) throws DAOException;
 
-    public abstract User update(User user, long hashPassword) throws DAOException;
+    //public abstract User update(User user, long hashPassword) throws DAOException;
 
 }
