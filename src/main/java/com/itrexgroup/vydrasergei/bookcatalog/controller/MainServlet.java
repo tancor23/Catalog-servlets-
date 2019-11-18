@@ -12,12 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MainServlet extends HttpServlet {
 
     @Override
-    public void init() throws ServletException {
-        System.out.println("init method");
-        super.init();
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
@@ -25,12 +19,6 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-    }
-
-    @Override
-    public void destroy() {
-        System.out.println("destroy method");
-        super.destroy();
     }
 
 }
