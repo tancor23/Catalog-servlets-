@@ -42,26 +42,21 @@ public class User {
         this.id = id;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (id != user.id) return false;
-        if (!Objects.equals(firstName, user.firstName)) return false;
-        if (!Objects.equals(lastName, user.lastName)) return false;
-        return (!Objects.equals(createdAt, user.createdAt));
+        return id == user.id &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(createdAt, user.createdAt);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        return result;
+        return Objects.hash(id, firstName, lastName, createdAt);
     }
 
     @Override

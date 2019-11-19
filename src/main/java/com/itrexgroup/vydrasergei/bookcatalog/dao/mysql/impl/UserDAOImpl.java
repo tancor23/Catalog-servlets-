@@ -8,6 +8,7 @@ import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl extends UserDAO {
@@ -15,21 +16,22 @@ public class UserDAOImpl extends UserDAO {
     private static final String ADD_NEW_USER_SQL = "INSERT INTO user (`first_name`, `last_name`) VALUES (?, ?);";
     private static final String UPDATE_USER_SQL = "UPDATE user SET first_name=?, last_name=? WHERE id=?;";
     private static final String GET_USER_BY_ID_SQL = "SELECT * FROM user WHERE id=?;";
+    private static final String GET_ALL_USERS_SQL = "SELECT * FROM users;";
 
     public UserDAOImpl(Datasource datasource) {
         super(datasource);
     }
 
     @Override
-    public User isUserInDB(String first_name, long last_name) throws DAOException {
+    public User getUserInDB(String firstName, String lastName) throws DAOException {
         PreparedStatement statement = null;
         ResultSet rs = null;
         User user = null;
 
         try (Connection connection = datasource.getConnection()) {
             statement = connection.prepareStatement(CHECK_USER_BY_ID_SQL);
-            statement.setString(1, first_name);
-            statement.setLong(2, last_name);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
 
             rs = statement.executeQuery();
 
@@ -42,14 +44,35 @@ public class UserDAOImpl extends UserDAO {
             }
 
         } catch (Exception e) {
-            throw new DAOException("isUserInDB() - SQL Error", e);
+            throw new DAOException("getUserInDB() - SQL Error", e);
         }
 
         return user;
     }
 
     @Override
-    public boolean createUser(User user, long hashPassword) throws DAOException {
+    public boolean createUser(String firstName, String lastName) throws DAOException {
+        PreparedStatement statement = null;
+        int status;
+
+        try (Connection connection = datasource.getConnection()) {
+            statement = connection.prepareStatement(ADD_NEW_USER_SQL);
+
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+
+            status = statement.executeUpdate();
+            if (status != 1) {
+                return false;
+            }
+        } catch (Exception e) {
+            throw new DAOException("createUser() - SQL Error", e);
+        }
+        return true;
+    }
+
+    @Override
+    public User create(User user) throws DAOException {
         PreparedStatement statement = null;
         int status;
 
@@ -61,12 +84,12 @@ public class UserDAOImpl extends UserDAO {
 
             status = statement.executeUpdate();
             if (status != 1) {
-                return false;
+                return user;
             }
         } catch (Exception e) {
             throw new DAOException("createUser() - SQL Error", e);
         }
-        return true;
+        return user;
     }
 
     @Override
@@ -102,8 +125,27 @@ public class UserDAOImpl extends UserDAO {
     }
 
     @Override
-    public List<User> findAll() {
-        return null;
+    public List<User> findAll() throws DAOException {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<User> users = new ArrayList<>();
+
+        try (Connection connection = datasource.getConnection()) {
+            ps = connection.prepareStatement(GET_ALL_USERS_SQL);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setFirstName(rs.getString(2));
+                user.setLastName(rs.getString(3));
+                user.setCreatedAt(rs.getString(4));
+                users.add(user);
+            }
+        } catch (Exception e) {
+            throw new DAOException("findAll() - SQL Error", e);
+        }
+
+        return users;
     }
 
     @Override

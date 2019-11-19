@@ -1,8 +1,13 @@
 package com.itrexgroup.vydrasergei.bookcatalog.dao.dbconfig;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
@@ -17,7 +22,7 @@ public class MysqlDataSource implements Datasource {
         try {
             instance.init();
         } catch (SQLException e) {
-            LOGGER.fatal("Can't init connection pool {}",e);
+            LOGGER.fatal("Can't init connection pool {}", e);
             throw new RuntimeException("Can't create connection pool");
         }
     }
@@ -54,7 +59,7 @@ public class MysqlDataSource implements Datasource {
 
     @Override
     public void init() throws SQLException {
-        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+        DriverManager.registerDriver(DriverManager.getDriver(driverName));
 
         active = new ArrayBlockingQueue<>(poolSize);
         passive = new ArrayBlockingQueue<>(poolSize);
@@ -80,7 +85,7 @@ public class MysqlDataSource implements Datasource {
 
     private void clearConnectionQueue() throws SQLException {
 
-        ArrayList<Connection> deletedConnections = new ArrayList<Connection>();
+        ArrayList<Connection> deletedConnections = new ArrayList<>();
 
         deletedConnections.addAll(passive);
         passive.clear();
