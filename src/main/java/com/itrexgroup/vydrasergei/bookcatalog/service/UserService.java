@@ -13,12 +13,14 @@ public interface UserService {
 
     User create(User user) throws ServiceException;
 
-    User findUser(Long userId) throws ServiceException, DAOException;
+    User findUser(Long userId) throws ServiceException;
 
     User editUser(User user) throws ServiceException;
 
     List<User> getAllUsers() throws ServiceException;
 
     void setUserDAO(UserDAO userDAO);
+
+    boolean remove(Long userId) throws ServiceException;
 
 }

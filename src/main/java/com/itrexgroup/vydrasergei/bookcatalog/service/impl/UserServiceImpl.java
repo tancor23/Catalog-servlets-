@@ -89,4 +89,20 @@ public class UserServiceImpl implements UserService {
         this.userDAO = userDAO;
     }
 
+    @Override
+    public boolean remove(Long userId) throws ServiceException {
+        boolean isUserDeleted = false;
+        try {
+            isUserDeleted = userDAO.delete(userId);
+        } catch (DAOException e) {
+            LOGGER.error("Users were not removed from DB, DAOException exception");
+            throw new ServiceException("remove(), DAOException exception");
+        }
+        return isUserDeleted;
+    }
+
+    public boolean remove(User user) throws ServiceException {
+        return remove(user.getId());
+    }
+
 }

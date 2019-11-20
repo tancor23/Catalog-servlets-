@@ -12,15 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/create_new_user")
-public class CreateUserServlet extends HttpServlet {
+@WebServlet("/delete_user")
+public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User(req.getParameter("firstName"), req.getParameter("lastName"));
+
+        long id  = Long.parseLong(req.getParameter("id"));
         UserService userService = ServiceFactory.getInstance().getUserService();
         try {
-            userService.create(user);
+            userService.remove(id);
         } catch (ServiceException e) {
             e.printStackTrace();
         }
@@ -28,3 +29,4 @@ public class CreateUserServlet extends HttpServlet {
     }
 
 }
+

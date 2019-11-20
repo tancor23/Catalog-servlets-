@@ -32,11 +32,27 @@
                 <td class="first_name">${user.firstName}</td>
                 <td class="last_name">${user.lastName}</td>
                 <td class="created_at">${user.createdAt}</td>
-                <td><a href="/user/delete=${user.id}">Delete</a></td>
-                <td><a href="/user/update=${user}">Update</a></td>
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/delete_user">
+                        <input type="hidden" name="id" value="${user.id}"/>
+                        <input type="submit" name="delete" value="Delete"/>
+                            <%--<td><a href="${pageContext.request.contextPath}/delete_user?id=${user.id}">Delete</a></td>--%>
+
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/update_user_page">
+                        <input type="hidden" name="id" value="${user.id}"/>
+                        <input type="submit" name="update" value="Update"/>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
-        <td><a href="${pageContext.request.contextPath}/new_user">Create New User</a></td>
+        <td>
+            <form method="get" action="${pageContext.request.contextPath}/new_user">
+                <input type="submit" name="createUser" value="Create New User"/>
+            </form>
+        </td>
     </table>
 
 </div>

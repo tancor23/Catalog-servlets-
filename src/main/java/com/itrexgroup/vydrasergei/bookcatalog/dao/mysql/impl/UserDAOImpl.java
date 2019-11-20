@@ -12,11 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl extends UserDAO {
-    private static final String CHECK_USER_BY_ID_SQL = "SELECT id,first_name,last_name,created_at FROM user WHERE first_name=? and last_name=?;";
+    private static final String CHECK_USER_BY_ID_SQL = "SELECT id,first_name,last_name,created_at FROM users WHERE first_name=? and last_name=?;";
     private static final String ADD_NEW_USER_SQL = "INSERT INTO users (`first_name`, `last_name`) VALUES (?, ?);";
     private static final String UPDATE_USER_SQL = "UPDATE users SET first_name=?, last_name=? WHERE id=?;";
     private static final String GET_USER_BY_ID_SQL = "SELECT * FROM users WHERE id=?;";
     private static final String GET_ALL_USERS_SQL = "SELECT * FROM users;";
+    private static final String DELETE_USER_BY_ID_SQL = "DELETE FROM users WHERE id=?;";
 
     public UserDAOImpl(Datasource datasource) {
         super(datasource);
@@ -170,7 +171,20 @@ public class UserDAOImpl extends UserDAO {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws DAOException {
+        PreparedStatement statement = null;
+        int status;
+
+        try (Connection connection = datasource.getConnection()) {
+            statement = connection.prepareStatement(DELETE_USER_BY_ID_SQL);
+            statement.setLong(1, id);
+            status = statement.executeUpdate();
+            if (status == 1) {
+                return true;
+            }
+        } catch (Exception e) {
+            throw new DAOException("update() - SQL Error", e);
+        }
         return false;
     }
 

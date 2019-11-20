@@ -11,10 +11,11 @@
 
 <div id="container">
     <div class="createUserForm">
-        <form method="post" action="${pageContext.request.contextPath}/create_new_user">
+        <form method="post" action="${pageContext.request.contextPath}/update_user">
+            <input type="hidden" name="id" value="${requestScope.userId}"/>
             First name: <label><input type="text" name="firstName"></label><br>
             Last name: <label><input type="text" name="lastName"></label><br>
-            <input type="submit" value="Add">
+            <input type="submit" value="Update">
         </form>
     </div>
 </div>
