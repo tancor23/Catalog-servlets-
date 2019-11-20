@@ -41,7 +41,9 @@
                 </td>
                 <td>
                     <form method="post" action="${pageContext.request.contextPath}/update_user_page">
-                        <input type="hidden" name="userId" value="${user.id}"/>
+                        <input type="hidden" name="userId" value="${user.id}" />
+                        <input type="hidden" name="firstName" value="${user.firstName}" />
+                        <input type="hidden" name="lastName" value="${user.lastName}" />
                         <input type="submit" name="update" value="Update"/>
                     </form>
                 </td>
@@ -78,7 +80,10 @@
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/update_book_page">
-                            <input type="hidden" name="bookId" value="${book.id}"/>
+                            <input type="hidden" name="bookId" value="${book.id}" />
+                            <input type="hidden" name="bookName" value="${book.name}" />
+                            <input type="hidden" name="authorName" value="${book.author}" />
+                            <input type="hidden" name="countOfPage" value="${book.page}" />
                             <input type="submit" name="update" value="Update"/>
                         </form>
                     </td>

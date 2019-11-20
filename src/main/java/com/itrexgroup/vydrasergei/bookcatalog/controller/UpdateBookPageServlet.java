@@ -13,6 +13,9 @@ public class UpdateBookPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("bookId",req.getParameter("bookId"));
+        req.setAttribute("bookName",req.getParameter("bookName"));
+        req.setAttribute("authorName",req.getParameter("authorName"));
+        req.setAttribute("countOfPage",req.getParameter("countOfPage"));
         req.getRequestDispatcher("WEB_INF/jsp/update_book_page.jsp").forward(req, resp);
     }
 

@@ -13,8 +13,8 @@
     <div class="createUserForm">
         <form method="post" action="${pageContext.request.contextPath}/update_user">
             <input type="hidden" name="userId" value="${requestScope.userId}"/>
-            First name: <label><input type="text" name="firstName"></label><br>
-            Last name: <label><input type="text" name="lastName"></label><br>
+            First name: <label><input type="text" name="firstName" required/></label> Previous value: ${requestScope.firstName}<br>
+            Last name: <label><input type="text" name="lastName" required/></label> Previous value: ${requestScope.lastName}<br>
             <input type="submit" value="Update">
         </form>
     </div>

@@ -12,9 +12,9 @@
 <div id="container">
     <div class="createBookForm">
         <form method="post" action="${pageContext.request.contextPath}/create_new_book">
-            Name of Book: <label><input type="text" name="bookName"></label><br>
-            Name of Author: <label><input type="text" name="authorName"></label><br>
-            Count of Page: <label><input type="text" name="countOfPage"></label><br>
+            Name of Book: <label><input type="text" name="bookName" required/></label><br>
+            Name of Author: <label><input type="text" name="authorName" required/></label><br>
+            Count of Page: <label><input type="text" name="countOfPage" required/></label><br>
             <input type="submit" value="Add">
         </form>
     </div>

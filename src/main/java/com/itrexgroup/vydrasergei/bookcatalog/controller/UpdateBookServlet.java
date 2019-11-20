@@ -20,7 +20,13 @@ public class UpdateBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long bookId = Long.parseLong(req.getParameter("bookId"));
-        Book book = new Book(req.getParameter("bookName"), req.getParameter("authorName"), Integer.parseInt(req.getParameter("countOfPage")));
+        int page;
+        try {
+            page = Integer.parseInt(req.getParameter("countOfPage"));
+        }catch (NumberFormatException e){
+            page = 1;
+        }
+        Book book = new Book(req.getParameter("bookName"), req.getParameter("authorName"), page);
         BookService bookService = ServiceFactory.getInstance().getBookService();
         book.setId(bookId);
         try {
