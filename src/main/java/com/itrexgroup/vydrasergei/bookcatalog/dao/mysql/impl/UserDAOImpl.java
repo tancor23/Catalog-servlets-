@@ -13,9 +13,9 @@ import java.util.List;
 
 public class UserDAOImpl extends UserDAO {
     private static final String CHECK_USER_BY_ID_SQL = "SELECT id,first_name,last_name,created_at FROM user WHERE first_name=? and last_name=?;";
-    private static final String ADD_NEW_USER_SQL = "INSERT INTO user (`first_name`, `last_name`) VALUES (?, ?);";
-    private static final String UPDATE_USER_SQL = "UPDATE user SET first_name=?, last_name=? WHERE id=?;";
-    private static final String GET_USER_BY_ID_SQL = "SELECT * FROM user WHERE id=?;";
+    private static final String ADD_NEW_USER_SQL = "INSERT INTO users (`first_name`, `last_name`) VALUES (?, ?);";
+    private static final String UPDATE_USER_SQL = "UPDATE users SET first_name=?, last_name=? WHERE id=?;";
+    private static final String GET_USER_BY_ID_SQL = "SELECT * FROM users WHERE id=?;";
     private static final String GET_ALL_USERS_SQL = "SELECT * FROM users;";
 
     public UserDAOImpl(Datasource datasource) {

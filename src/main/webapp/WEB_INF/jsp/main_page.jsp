@@ -13,36 +13,34 @@
 
     <div id="menu">
         <div class="menuUserAction">
-<%--            <p><a href="/newNotice">Add new flat</a></p>
-            <p><a href="/controller?command=EDIT_USER_PROFILE">Edit profile</a></p>--%>
+            <%--            <p><a href="/newNotice">Add new flat</a></p>
+                        <p><a href="/controller?command=EDIT_USER_PROFILE">Edit profile</a></p>--%>
         </div>
     </div>
 
-    <div id="content">
-        <c:forEach items="${requestScope.users}" var="users">
-            <div class="id">
-                <c:out value="${users.id}"/>
-            </div>
-            <div class="first_name">
-                <c:out value="${users.firstName}"/>
-            </div>
-            <div class="last_name">
-                <c:out value="${users.lastName}"/>
-            </div>
-            <div class="created_at">
-                <c:out value="${users.createdAt}"/>
-            </div>
+    <h2>Users</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Second Name</th>
+            <th>Was created at</th>
+        </tr>
+        <c:forEach items="${requestScope.users}" var="user">
+            <tr>
+                <td class="id">${user.id}</td>
+                <td class="first_name">${user.firstName}</td>
+                <td class="last_name">${user.lastName}</td>
+                <td class="created_at">${user.createdAt}</td>
+                <td><a href="/user/delete=${user.id}">Delete</a></td>
+                <td><a href="/user/update=${user}">Update</a></td>
+            </tr>
         </c:forEach>
+        <td><a href="${pageContext.request.contextPath}/new_user">Create New User</a></td>
+    </table>
 
-        </div>
-
-        <div id="rightBlock">
-        </div>
-
-        <div class="clear"></div>
-
-    </div>
 </div>
 </body>
 
 </html>
+

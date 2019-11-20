@@ -22,7 +22,7 @@ public class MysqlDataSource implements Datasource {
         try {
             instance.init();
         } catch (SQLException e) {
-            LOGGER.fatal("Can't init connection pool {}", e);
+            LOGGER.fatal("Can't init connection pool", e);
             throw new RuntimeException("Can't create connection pool");
         }
     }
@@ -59,7 +59,13 @@ public class MysqlDataSource implements Datasource {
 
     @Override
     public void init() throws SQLException {
-        DriverManager.registerDriver(DriverManager.getDriver(driverName));
+        try {
+            Class.forName(this.driverName);
+        } catch (ClassNotFoundException e) {
+            LOGGER.fatal("Can't init connection to DB ", e);
+            throw new RuntimeException("Can't init connection to DB");
+        }
+        //DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
         active = new ArrayBlockingQueue<>(poolSize);
         passive = new ArrayBlockingQueue<>(poolSize);
