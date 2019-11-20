@@ -1,6 +1,8 @@
 package com.itrexgroup.vydrasergei.bookcatalog.controller;
 
+import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.Book;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
+import com.itrexgroup.vydrasergei.bookcatalog.service.BookService;
 import com.itrexgroup.vydrasergei.bookcatalog.service.ServiceFactory;
 import com.itrexgroup.vydrasergei.bookcatalog.service.UserService;
 import com.itrexgroup.vydrasergei.bookcatalog.service.exception.ServiceException;
@@ -12,16 +14,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete_user")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/update_book")
+public class UpdateBookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        long id  = Long.parseLong(req.getParameter("userId"));
-        UserService userService = ServiceFactory.getInstance().getUserService();
+        long bookId = Long.parseLong(req.getParameter("bookId"));
+        Book book = new Book(req.getParameter("bookName"), req.getParameter("authorName"), Integer.parseInt(req.getParameter("countOfPage")));
+        BookService bookService = ServiceFactory.getInstance().getBookService();
+        book.setId(bookId);
         try {
-            userService.remove(id);
+            bookService.editBook(book);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

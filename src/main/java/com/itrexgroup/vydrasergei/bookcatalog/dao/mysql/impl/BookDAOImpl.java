@@ -14,8 +14,8 @@ import java.util.List;
 
 public class BookDAOImpl extends BookDAO {
     private static final String CHECK_BOOK_BY_ID_SQL = "SELECT id,name,author,page FROM books WHERE name=? and author=?;";
-    private static final String ADD_NEW_BOOK_SQL = "INSERT INTO books (`name`, `author`) VALUES (?, ?);";
-    private static final String UPDATE_BOOK_SQL = "UPDATE books SET name=?, author=? WHERE id=?;";
+    private static final String ADD_NEW_BOOK_SQL = "INSERT INTO books (`name`, `author`, `page`) VALUES (?, ?, ?);";
+    private static final String UPDATE_BOOK_SQL = "UPDATE books SET name=?, author=?, page=? WHERE id=?;";
     private static final String GET_BOOK_BY_ID_SQL = "SELECT * FROM books WHERE id=?;";
     private static final String GET_ALL_BOOKS_SQL = "SELECT * FROM books;";
     private static final String DELETE_BOOK_BY_ID_SQL = "DELETE FROM books WHERE id=?;";
@@ -51,7 +51,7 @@ public class BookDAOImpl extends BookDAO {
     }
 
     @Override
-    public boolean createBook(String name, String author) throws DAOException {
+    public boolean createBook(String name, String author, int countOfPage) throws DAOException {
         PreparedStatement statement = null;
         int status;
 
@@ -60,6 +60,7 @@ public class BookDAOImpl extends BookDAO {
 
             statement.setString(1, name);
             statement.setString(2, author);
+            statement.setInt(3, countOfPage);
 
             status = statement.executeUpdate();
             if (status != 1) {
@@ -81,6 +82,7 @@ public class BookDAOImpl extends BookDAO {
 
             statement.setString(1, book.getName());
             statement.setString(2, book.getAuthor());
+            statement.setInt(3, book.getPage());
 
             status = statement.executeUpdate();
             if (status != 1) {
@@ -156,7 +158,8 @@ public class BookDAOImpl extends BookDAO {
             statement = connection.prepareStatement(UPDATE_BOOK_SQL);
             statement.setString(1, book.getName());
             statement.setString(2, book.getAuthor());
-            statement.setLong(3, book.getId());
+            statement.setInt(3, book.getPage());
+            statement.setLong(4, book.getId());
 
             status = statement.executeUpdate();
             if (status != 1) {

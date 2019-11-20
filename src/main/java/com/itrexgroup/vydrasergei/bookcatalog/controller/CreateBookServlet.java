@@ -1,8 +1,8 @@
 package com.itrexgroup.vydrasergei.bookcatalog.controller;
 
-import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
+import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.Book;
+import com.itrexgroup.vydrasergei.bookcatalog.service.BookService;
 import com.itrexgroup.vydrasergei.bookcatalog.service.ServiceFactory;
-import com.itrexgroup.vydrasergei.bookcatalog.service.UserService;
 import com.itrexgroup.vydrasergei.bookcatalog.service.exception.ServiceException;
 
 import javax.servlet.ServletException;
@@ -17,10 +17,11 @@ public class CreateBookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User(req.getParameter("firstName"), req.getParameter("lastName"));
-        UserService userService = ServiceFactory.getInstance().getUserService();
+        System.out.println(Integer.parseInt(req.getParameter("countOfPage")));
+        Book book = new Book(req.getParameter("bookName"), req.getParameter("authorName"), Integer.parseInt(req.getParameter("countOfPage")));
+        BookService bookService = ServiceFactory.getInstance().getBookService();
         try {
-            userService.create(user);
+            bookService.create(book);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

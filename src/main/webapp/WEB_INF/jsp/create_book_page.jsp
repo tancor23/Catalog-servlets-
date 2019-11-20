@@ -10,10 +10,11 @@
 <body>
 
 <div id="container">
-    <div class="createUserForm">
-        <form method="post" action="${pageContext.request.contextPath}/create_new_user">
-            First name: <label><input type="text" name="firstName"></label><br>
-            Last name: <label><input type="text" name="lastName"></label><br>
+    <div class="createBookForm">
+        <form method="post" action="${pageContext.request.contextPath}/create_new_book">
+            Name of Book: <label><input type="text" name="bookName"></label><br>
+            Name of Author: <label><input type="text" name="authorName"></label><br>
+            Count of Page: <label><input type="text" name="countOfPage"></label><br>
             <input type="submit" value="Add">
         </form>
     </div>

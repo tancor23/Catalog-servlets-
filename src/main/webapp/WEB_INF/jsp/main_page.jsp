@@ -33,7 +33,7 @@
                 <td class="created_at">${user.createdAt}</td>
                 <td>
                     <form method="post" action="${pageContext.request.contextPath}/delete_user">
-                        <input type="hidden" name="id" value="${user.id}"/>
+                        <input type="hidden" name="userId" value="${user.id}"/>
                         <input type="submit" name="delete" value="Delete"/>
                             <%--<td><a href="${pageContext.request.contextPath}/delete_user?id=${user.id}">Delete</a></td>--%>
 
@@ -41,7 +41,7 @@
                 </td>
                 <td>
                     <form method="post" action="${pageContext.request.contextPath}/update_user_page">
-                        <input type="hidden" name="id" value="${user.id}"/>
+                        <input type="hidden" name="userId" value="${user.id}"/>
                         <input type="submit" name="update" value="Update"/>
                     </form>
                 </td>
@@ -61,22 +61,24 @@
             <tr>
                 <th>ID</th>
                 <th>Name of Book</th>
+                <th>Name of Author</th>
                 <th>Count of Page</th>
             </tr>
             <c:forEach items="${requestScope.books}" var="book">
                 <tr>
                     <td class="id">${book.id}</td>
-                    <td class="first_name">${book.name}</td>
-                    <td class="created_at">${book.countOfPage}</td>
+                    <td class="book_name">${book.name}</td>
+                    <td class="author_name">${book.author}</td>
+                    <td class="count_of_page">${book.page}</td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/delete_book">
-                            <input type="hidden" name="id" value="${book.id}"/>
+                            <input type="hidden" name="bookId" value="${book.id}"/>
                             <input type="submit" name="delete" value="Delete"/>
                         </form>
                     </td>
                     <td>
                         <form method="post" action="${pageContext.request.contextPath}/update_book_page">
-                            <input type="hidden" name="id" value="${book.id}"/>
+                            <input type="hidden" name="bookId" value="${book.id}"/>
                             <input type="submit" name="update" value="Update"/>
                         </form>
                     </td>

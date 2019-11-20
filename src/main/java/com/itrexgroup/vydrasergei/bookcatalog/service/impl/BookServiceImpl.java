@@ -30,8 +30,8 @@ public class BookServiceImpl implements BookService {
     public Book create(Book book) throws ServiceException {
         if (book != null) {
             try {
-                LOGGER.info("Created book in UserServiceImpl");
-                if (bookDAO.createBook(book.getName(), book.getAuthor())) {
+                LOGGER.info("Created book in BookServiceImpl");
+                if (bookDAO.createBook(book.getName(), book.getAuthor(), book.getPage())) {
                     book = bookDAO.getBookInDB(book.getName(), book.getAuthor());
                 } else {
                     LOGGER.warn("Book was not created in DB");

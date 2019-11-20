@@ -10,6 +10,17 @@ public class Book {
 
     public Book(){}
 
+    public Book(String name, String author) {
+        this.name = name;
+        this.author = author;
+    }
+
+    public Book(String name, String author, int page) {
+        this.name = name;
+        this.author = author;
+        this.page = page;
+    }
+
     public String getName() {
         return name;
     }

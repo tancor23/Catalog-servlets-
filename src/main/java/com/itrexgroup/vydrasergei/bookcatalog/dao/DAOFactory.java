@@ -2,7 +2,9 @@ package com.itrexgroup.vydrasergei.bookcatalog.dao;
 
 import com.itrexgroup.vydrasergei.bookcatalog.dao.dbconfig.Datasource;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.dbconfig.MysqlDataSource;
+import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.BookDAO;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.UserDAO;
+import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.impl.BookDAOImpl;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.impl.UserDAOImpl;
 
 public class DAOFactory {
@@ -10,11 +12,12 @@ public class DAOFactory {
     private Datasource datasource;
 
     private final UserDAO userDAO;
+    private final BookDAO bookDAO;
 
     private DAOFactory() {
         datasource = MysqlDataSource.getInstance();
         userDAO = new UserDAOImpl(datasource);
-
+        bookDAO = new BookDAOImpl(datasource);
     }
 
     public static DAOFactory getInstance() {
@@ -26,6 +29,10 @@ public class DAOFactory {
 
     public UserDAO getUserDAO() {
         return userDAO;
+    }
+
+    public BookDAO getBookDAO() {
+        return bookDAO;
     }
 
 }

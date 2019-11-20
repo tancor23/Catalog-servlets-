@@ -13,6 +13,6 @@ public abstract class BookDAO extends GenericDAO<Book, Long> {
 
     public abstract Book getBookInDB(String name, String author) throws DAOException;
 
-    public abstract boolean createBook(String name, String author) throws DAOException;
+    public abstract boolean createBook(String name, String author, int countOfPage) throws DAOException;
 
 }
