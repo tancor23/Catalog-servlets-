@@ -111,7 +111,6 @@ public class UserDAOImpl extends UserDAO {
             rs = prStatement.executeQuery();
 
             if (rs.next()) {
-                user = new User();
                 user.setId(rs.getLong(1));
                 user.setFirstName(rs.getString(2));
                 user.setLastName(rs.getString(3));

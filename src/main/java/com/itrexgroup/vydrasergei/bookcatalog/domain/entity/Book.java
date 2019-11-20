@@ -5,7 +5,8 @@ import java.util.Objects;
 public class Book {
     private long id = -1;
     private String name;
-    private long page;
+    private String author;
+    private int page;
 
     public Book(){}
 
@@ -17,11 +18,11 @@ public class Book {
         this.name = name;
     }
 
-    public long getPage() {
+    public int getPage() {
         return page;
     }
 
-    public void setPage(long page) {
+    public void setPage(int page) {
         this.page = page;
     }
 
@@ -33,32 +34,37 @@ public class Book {
         this.id = id;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Book user = (Book) o;
-
-        if (id != user.id) return false;
-        if (!Objects.equals(name, user.name)) return false;
-        return (!Objects.equals(page, user.page));
+        Book book = (Book) o;
+        return id == book.id &&
+                page == book.page &&
+                Objects.equals(name, book.name) &&
+                Objects.equals(author, book.author);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (int)(page);
-        return result;
+        return Objects.hash(id, name, author, page);
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "Id=" + id +
+        return "Book{" +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", page='" + page + '\'' +
+                ", author='" + author + '\'' +
+                ", page=" + page +
                 '}';
     }
 }

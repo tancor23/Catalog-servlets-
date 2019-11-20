@@ -13,11 +13,10 @@
 
     <div id="menu">
         <div class="menuUserAction">
-            <%--            <p><a href="/newNotice">Add new flat</a></p>
-                        <p><a href="/controller?command=EDIT_USER_PROFILE">Edit profile</a></p>--%>
         </div>
     </div>
 
+    <div id="userTable">
     <h2>Users</h2>
     <table border="1">
         <tr>
@@ -54,6 +53,42 @@
             </form>
         </td>
     </table>
+    </div>
+
+    <div id="bookTable">
+        <h2>Books</h2>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name of Book</th>
+                <th>Count of Page</th>
+            </tr>
+            <c:forEach items="${requestScope.books}" var="book">
+                <tr>
+                    <td class="id">${book.id}</td>
+                    <td class="first_name">${book.name}</td>
+                    <td class="created_at">${book.countOfPage}</td>
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/delete_book">
+                            <input type="hidden" name="id" value="${book.id}"/>
+                            <input type="submit" name="delete" value="Delete"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="${pageContext.request.contextPath}/update_book_page">
+                            <input type="hidden" name="id" value="${book.id}"/>
+                            <input type="submit" name="update" value="Update"/>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+            <td>
+                <form method="get" action="${pageContext.request.contextPath}/new_book">
+                    <input type="submit" name="createUser" value="Create New Book"/>
+                </form>
+            </td>
+        </table>
+    </div>
 
 </div>
 </body>
