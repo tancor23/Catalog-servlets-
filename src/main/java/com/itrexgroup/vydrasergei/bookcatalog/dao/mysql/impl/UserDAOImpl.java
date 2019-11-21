@@ -87,7 +87,7 @@ public class UserDAOImpl extends UserDAO {
                 ids.add(rs.getLong(1));
             }
         } catch (Exception e) {
-            throw new DAOException("createUser() - SQL Error", e);
+            throw new DAOException("UserDAOImpl getAllMappedUserIds() - SQL Error", e);
         }
         return ids;
     }

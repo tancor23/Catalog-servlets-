@@ -12,7 +12,7 @@ public interface UserBookService {
 
     List<Book> getAllMappedBookOfUser(Long userId) throws ServiceException;
 
-    //List<User> getAllMappedUserOfBook(Long bookId) throws ServiceException;
+    List<User> getAllMappedUserOfBook(Long bookId) throws ServiceException;
 
     void setUserDAO(UserDAO userDAO);
 

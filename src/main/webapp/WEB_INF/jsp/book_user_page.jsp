@@ -4,22 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User-Book</title>
+    <title>Book-User</title>
     <meta charset="utf-8">
 </head>
 <body>
 
 <div id="container">
-    <div class="userBookForm">
-        <h1>User '${requestScope.firstName} ${requestScope.lastName}' has: </h1>
+    <div class="bookUserForm">
+        <h1>The book '${requestScope.bookName}' is has: </h1>
         <c:choose>
-            <c:when test="${requestScope.userBookNameSize=='0'}">
-                <h1>No one book</h1>
+            <c:when test="${requestScope.bookUserSize=='0'}">
+                <h1>No one</h1>
                 <br />
             </c:when>
             <c:otherwise>
-                <c:forEach items="${requestScope.userBookNames}" var="userBookName">
-                    <h1> - '${userBookName}' book</h1>
+                <c:forEach items="${requestScope.bookUsers}" var="bookUserName">
+                    <h1> - '${bookUserName}' user</h1>
                 </c:forEach>
                 <br />
             </c:otherwise>

@@ -17,6 +17,7 @@
         </form>
     </div>
 </div>
+<br>
 <div>
     <form method="get" action="${pageContext.request.contextPath}/start">
         <input type="submit" name="back" value="Back"/>

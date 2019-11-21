@@ -18,6 +18,7 @@ public class BookDAOImpl extends BookDAO {
     private static final String GET_BOOK_BY_ID_SQL = "SELECT * FROM books WHERE id=?;";
     private static final String GET_ALL_BOOKS_SQL = "SELECT * FROM books;";
     private static final String DELETE_BOOK_BY_ID_SQL = "DELETE FROM books WHERE id=?;";
+    private static final String SELECT_ALL_MAPPED_USER_ID_SQL = "SELECT user_id FROM user_book WHERE book_id=?;";
 
     public BookDAOImpl(Datasource datasource) {
         super(datasource);
@@ -69,6 +70,25 @@ public class BookDAOImpl extends BookDAO {
             throw new DAOException("createBook() - SQL Error", e);
         }
         return true;
+    }
+
+    @Override
+    public List<Long> getAllMappedUserIds(Long bookId) throws DAOException {
+        List<Long> ids = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try (Connection connection = datasource.getConnection()) {
+            ps = connection.prepareStatement(SELECT_ALL_MAPPED_USER_ID_SQL);
+            ps.setLong(1, bookId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getLong(1));
+            }
+        } catch (Exception e) {
+            throw new DAOException("BookDAOImpl getAllMappedUserIds() - SQL Error", e);
+        }
+        return ids;
     }
 
     @Override

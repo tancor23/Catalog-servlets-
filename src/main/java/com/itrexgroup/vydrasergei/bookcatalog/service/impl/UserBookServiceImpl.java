@@ -4,6 +4,7 @@ import com.itrexgroup.vydrasergei.bookcatalog.dao.DAOException;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.BookDAO;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.UserDAO;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.Book;
+import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
 import com.itrexgroup.vydrasergei.bookcatalog.service.UserBookService;
 import com.itrexgroup.vydrasergei.bookcatalog.service.exception.ServiceException;
 import org.apache.logging.log4j.LogManager;
@@ -36,6 +37,27 @@ public class UserBookServiceImpl implements UserBookService {
             }
         }
         return books;
+    }
+
+    @Override
+    public List<User> getAllMappedUserOfBook(Long bookId) throws ServiceException {
+        List<User> users = new ArrayList<>();
+        List<Long> mappedUserIds = null;
+        try {
+            mappedUserIds = bookDAO.getAllMappedUserIds(bookId);
+        } catch (DAOException e) {
+            LOGGER.error("bookDAO.getAllMappedUserIds(), DAOException exception");
+            throw new ServiceException("bookDAO.getAllMappedUserIds(), DAOException exception");
+        }
+        for (Long userId : mappedUserIds) {
+            try {
+                users.add(userDAO.findById(userId));
+            } catch (DAOException e) {
+                LOGGER.error("userDAO.findById(userId), DAOException exception");
+                throw new ServiceException("userDAO.findById(userId), DAOException exception");
+            }
+        }
+        return users;
     }
 
     @Override
