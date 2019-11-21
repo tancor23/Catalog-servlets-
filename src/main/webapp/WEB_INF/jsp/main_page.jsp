@@ -99,6 +99,13 @@
             <input type="submit" name="createUser" value="Create New Book"/>
         </form>
     </div>
+
+    <div id="UserBookMappingContainer">
+        <br>
+        <form method="get" action="${pageContext.request.contextPath}/add_user_book_mapping">
+            <input type="submit" name="createUser" value="Add User-Book Mapping"/>
+        </form>
+    </div>
 </div>
 </body>
 

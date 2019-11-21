@@ -2,6 +2,7 @@ package com.itrexgroup.vydrasergei.bookcatalog.service.impl;
 
 import com.itrexgroup.vydrasergei.bookcatalog.dao.DAOException;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.BookDAO;
+import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.UserBookDAO;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.UserDAO;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.Book;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
@@ -17,6 +18,7 @@ public class UserBookServiceImpl implements UserBookService {
     private final static Logger LOGGER = LogManager.getLogger(UserBookServiceImpl.class);
     private UserDAO userDAO;
     private BookDAO bookDAO;
+    private UserBookDAO userBookDAO;
 
     @Override
     public List<Book> getAllMappedBookOfUser(Long userId) throws ServiceException {
@@ -58,6 +60,27 @@ public class UserBookServiceImpl implements UserBookService {
             }
         }
         return users;
+    }
+
+    @Override
+    public boolean createByIds(Long userId, Long bookId) throws ServiceException {
+        try {
+            if(userBookDAO.createByIds(userId, bookId)){
+                LOGGER.info("USER BOOK record was written");
+                return true;
+            }else{
+                LOGGER.warn("USER BOOK record was NOT written");
+                return false;
+            }
+        } catch (DAOException e) {
+            LOGGER.error("userBookDAO.createByIds(), DAOException exception");
+            throw new ServiceException("userBookDAO.createByIds(), DAOException exception");
+        }
+    }
+
+    @Override
+    public void setUserBookDAO(UserBookDAO userBookDAO) {
+        this.userBookDAO = userBookDAO;
     }
 
     @Override

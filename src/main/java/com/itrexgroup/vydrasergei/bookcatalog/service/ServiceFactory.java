@@ -22,6 +22,7 @@ public class ServiceFactory {
         bookService.setBookDAO(daoFactory.getBookDAO());
 
         userBookService = new UserBookServiceImpl();
+        userBookService.setUserBookDAO(daoFactory.getUserBookDAO());
         userBookService.setUserDAO(daoFactory.getUserDAO());
         userBookService.setBookDAO(daoFactory.getBookDAO());
     }
