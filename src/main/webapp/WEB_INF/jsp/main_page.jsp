@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +44,12 @@
                         <input type="hidden" name="firstName" value="${user.firstName}" />
                         <input type="hidden" name="lastName" value="${user.lastName}" />
                         <input type="submit" name="update" value="Update"/>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="${pageContext.request.contextPath}/user_book_page">
+                        <input type="hidden" name="userId" value="${user.id}" />
+                        <input type="submit" name="books" value="Books"/>
                     </form>
                 </td>
             </tr>

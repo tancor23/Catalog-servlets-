@@ -1,6 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +16,11 @@
             <input type="submit" value="Add">
         </form>
     </div>
+</div>
+<div>
+    <form method="get" action="${pageContext.request.contextPath}/start">
+        <input type="submit" name="back" value="Back"/>
+    </form>
 </div>
 </body>
 

@@ -1,0 +1,10 @@
+.heading {height: 500px; background: url(../../images/team.jpg) no-repeat 0 0;}
+.row {padding-left: 200px; float: left; padding-top: 10px;}
+.teamName {
+    -moz-columns: 5px 5;
+    -webkit-columns: 5px 5;
+    columns: 5px 5;
+    height: 28px;
+}
+.row a { color: #fefefe; font: 18pt/14pt sans-serif; }
+.row h3 {color:#FF0000; font: 24pt/20pt sans-serif;}
