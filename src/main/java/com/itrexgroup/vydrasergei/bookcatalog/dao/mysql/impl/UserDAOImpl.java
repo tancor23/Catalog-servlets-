@@ -18,6 +18,7 @@ public class UserDAOImpl extends UserDAO {
     private static final String GET_USER_BY_ID_SQL = "SELECT * FROM users WHERE id=?;";
     private static final String GET_ALL_USERS_SQL = "SELECT * FROM users;";
     private static final String DELETE_USER_BY_ID_SQL = "DELETE FROM users WHERE id=?;";
+    private static final String SELECT_ALL_MAPPED_BOOK_ID_SQL = "SELECT book_id FROM user_book WHERE user_id=?;";
 
     public UserDAOImpl(Datasource datasource) {
         super(datasource);
@@ -38,7 +39,7 @@ public class UserDAOImpl extends UserDAO {
 
             if (rs.next()) {
                 user = new User();
-                user.setId(rs.getInt(1));
+                user.setId(rs.getLong(1));
                 user.setFirstName(rs.getString(2));
                 user.setLastName(rs.getString(3));
                 user.setCreatedAt(rs.getString(4));
@@ -73,6 +74,25 @@ public class UserDAOImpl extends UserDAO {
     }
 
     @Override
+    public List<Long> getAllMappedBookIds(Long userId) throws DAOException {
+        List<Long> ids = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try (Connection connection = datasource.getConnection()) {
+            ps = connection.prepareStatement(SELECT_ALL_MAPPED_BOOK_ID_SQL);
+            ps.setLong(1, userId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ids.add(rs.getLong(1));
+            }
+        } catch (Exception e) {
+            throw new DAOException("createUser() - SQL Error", e);
+        }
+        return ids;
+    }
+
+    @Override
     public User create(User user) throws DAOException {
         PreparedStatement statement = null;
         int status;
@@ -93,10 +113,6 @@ public class UserDAOImpl extends UserDAO {
         return user;
     }
 
-    @Override
-    public User create(User entity, Connection connection) throws DAOException {
-        return null;
-    }
 
     @Override
     public User findById(Long id) throws DAOException {
@@ -135,7 +151,7 @@ public class UserDAOImpl extends UserDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User();
-                user.setId(rs.getInt(1));
+                user.setId(rs.getLong(1));
                 user.setFirstName(rs.getString(2));
                 user.setLastName(rs.getString(3));
                 user.setCreatedAt(rs.getString(4));
@@ -149,7 +165,7 @@ public class UserDAOImpl extends UserDAO {
     }
 
     @Override
-    public User update(User user) throws DAOException {
+    public void update(User user) throws DAOException {
         PreparedStatement statement = null;
         int status;
 
@@ -166,7 +182,6 @@ public class UserDAOImpl extends UserDAO {
         } catch (Exception e) {
             throw new DAOException("update() - SQL Error", e);
         }
-        return user;
     }
 
     @Override

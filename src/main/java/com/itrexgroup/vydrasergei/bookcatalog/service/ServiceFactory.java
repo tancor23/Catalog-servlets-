@@ -2,6 +2,7 @@ package com.itrexgroup.vydrasergei.bookcatalog.service;
 
 import com.itrexgroup.vydrasergei.bookcatalog.dao.DAOFactory;
 import com.itrexgroup.vydrasergei.bookcatalog.service.impl.BookServiceImpl;
+import com.itrexgroup.vydrasergei.bookcatalog.service.impl.UserBookServiceImpl;
 import com.itrexgroup.vydrasergei.bookcatalog.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -9,6 +10,7 @@ public class ServiceFactory {
 
     private final UserService userService;
     private final BookService bookService;
+    private final UserBookService userBookService;
 
     private ServiceFactory() {
         DAOFactory daoFactory = DAOFactory.getInstance();
@@ -18,6 +20,10 @@ public class ServiceFactory {
 
         bookService = new BookServiceImpl();
         bookService.setBookDAO(daoFactory.getBookDAO());
+
+        userBookService = new UserBookServiceImpl();
+        userBookService.setUserDAO(daoFactory.getUserDAO());
+        userBookService.setBookDAO(daoFactory.getBookDAO());
     }
 
     public static ServiceFactory getInstance() {
@@ -33,5 +39,9 @@ public class ServiceFactory {
 
     public BookService getBookService() {
         return bookService;
+    }
+
+    public UserBookService getUserBookService() {
+        return userBookService;
     }
 }

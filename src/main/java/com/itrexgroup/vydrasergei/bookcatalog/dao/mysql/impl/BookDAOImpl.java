@@ -4,7 +4,6 @@ import com.itrexgroup.vydrasergei.bookcatalog.dao.DAOException;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.dbconfig.Datasource;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.BookDAO;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.Book;
-import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -95,11 +94,6 @@ public class BookDAOImpl extends BookDAO {
     }
 
     @Override
-    public Book create(Book entity, Connection connection) throws DAOException {
-        return null;
-    }
-
-    @Override
     public Book findById(Long id) throws DAOException {
         PreparedStatement prStatement = null;
         ResultSet rs = null;
@@ -150,7 +144,7 @@ public class BookDAOImpl extends BookDAO {
     }
 
     @Override
-    public Book update(Book book) throws DAOException {
+    public void update(Book book) throws DAOException {
         PreparedStatement statement = null;
         int status;
 
@@ -168,7 +162,6 @@ public class BookDAOImpl extends BookDAO {
         } catch (Exception e) {
             throw new DAOException("book update() - SQL Error", e);
         }
-        return book;
     }
 
     @Override

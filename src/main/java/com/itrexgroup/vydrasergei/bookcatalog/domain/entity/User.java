@@ -67,7 +67,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "Id=" + id +
-                ", name='" + firstName + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 '}';

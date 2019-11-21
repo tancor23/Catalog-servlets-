@@ -2,6 +2,7 @@ package com.itrexgroup.vydrasergei.bookcatalog.service.impl;
 
 import com.itrexgroup.vydrasergei.bookcatalog.dao.DAOException;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.UserDAO;
+import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.Book;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
 import com.itrexgroup.vydrasergei.bookcatalog.service.UserService;
 import com.itrexgroup.vydrasergei.bookcatalog.service.exception.ServiceException;
@@ -13,19 +14,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final static Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
     private UserDAO userDAO;
-
-    @Override
-    public boolean isUserExists(String firstName, String lastName) throws ServiceException {
-        boolean isLoggedIn;
-        try {
-            LOGGER.info("Checking login matches");
-            isLoggedIn = userDAO.getUserInDB(firstName, lastName) != null;
-        } catch (DAOException e) {
-            LOGGER.warn("User exist checking error: {}", e);
-            throw new ServiceException(e);
-        }
-        return isLoggedIn;
-    }
 
     @Override
     public User create(User user) throws ServiceException {
@@ -61,14 +49,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User editUser(User user) throws ServiceException {
+    public void editUser(User user) throws ServiceException {
         try {
             userDAO.update(user);
         } catch (DAOException e) {
             LOGGER.error("User was not updated, DAOException exception");
             throw new ServiceException("editUser(), DAOException exception");
         }
-        return user;
     }
 
     @Override
@@ -82,7 +69,6 @@ public class UserServiceImpl implements UserService {
         }
         return users;
     }
-
 
     @Override
     public void setUserDAO(UserDAO userDAO) {

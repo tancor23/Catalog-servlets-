@@ -60,14 +60,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book editBook(Book book) throws ServiceException {
+    public void editBook(Book book) throws ServiceException {
         try {
             bookDAO.update(book);
         } catch (DAOException e) {
             LOGGER.error("Book was not updated, DAOException exception");
             throw new ServiceException("editBook(), DAOException exception");
         }
-        return book;
     }
 
     @Override

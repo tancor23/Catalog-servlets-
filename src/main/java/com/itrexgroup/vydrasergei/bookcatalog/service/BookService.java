@@ -14,7 +14,7 @@ public interface BookService {
 
     Book findBook(Long bookId) throws ServiceException;
 
-    Book editBook(Book book) throws ServiceException;
+    void editBook(Book book) throws ServiceException;
 
     List<Book> getAllBooks() throws ServiceException;
 
