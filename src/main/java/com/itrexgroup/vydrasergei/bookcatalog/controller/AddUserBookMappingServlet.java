@@ -34,8 +34,10 @@ public class AddUserBookMappingServlet extends HttpServlet {
         UserBookService userBookService = ServiceFactory.getInstance().getUserBookService();
         try {
             userBookService.createByIds(userId, bookId);
+            req.setAttribute("alert", "Successful");
         } catch (ServiceException e) {
             e.printStackTrace();
+            req.setAttribute("alert", "This mapping is already in DB");
         }
         doGet(req,resp);
     }

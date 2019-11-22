@@ -1,18 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% String message = (String) request.getAttribute("alert");%>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>User-Book Mapping</title>
     <meta charset="utf-8">
+    <script type="text/javascript">
+        var msg = "<%=message%>";
+        if (msg !== 'null') {
+            alert(msg);
+        }
+    </script>
 </head>
 <body>
+
 
 <div id="container">
     <div class="userBookMappingForm">
         <h1>User-Book Mapping</h1>
-        <form method="post" action="${pageContext.request.contextPath}/add_user_book_mapping" >
+        <form method="post" action="${pageContext.request.contextPath}/add_user_book_mapping">
             Select User(s):&nbsp;
             <label>
                 <select name="userSelect" required>
@@ -33,7 +41,7 @@
             </label>
             <br/>
             <br/>
-            <input type="submit" value="Associate" />
+            <input type="submit" value="Associate"/>
         </form>
     </div>
 </div>
