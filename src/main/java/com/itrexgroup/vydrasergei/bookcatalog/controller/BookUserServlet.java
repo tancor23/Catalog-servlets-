@@ -24,6 +24,7 @@ public class BookUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserBookService userBookService = ServiceFactory.getInstance().getUserBookService();
         BookService bookService = ServiceFactory.getInstance().getBookService();
+        req.setCharacterEncoding("UTF-8");
         long id = Long.parseLong(req.getParameter("bookId"));
         Book book = new Book();
         try {
@@ -38,6 +39,7 @@ public class BookUserServlet extends HttpServlet {
             e.printStackTrace();
         }
         List<String> userNames = getFullNameOfUser(allMappedUserOfBook);
+
         req.setAttribute("bookName", book.getName());
         req.setAttribute("bookUserSize", userNames.size());
         req.setAttribute("bookUsers", userNames);

@@ -7,8 +7,8 @@
     <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
     <link href="<c:url value="/resources/css/error_page/style.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/js/error.js" />" rel="script">
-    <link rel="icon" type="image/vnd.microsoft.icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico">
-    <link rel="SHORTCUT ICON" href="${pageContext.request.contextPath}/resources/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/images/shortcut_icon.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/shortcut_icon.png">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Error</title>
 </head>

@@ -17,6 +17,7 @@ public class CreateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         User user = new User(req.getParameter("firstName"), req.getParameter("lastName"));
         UserService userService = ServiceFactory.getInstance().getUserService();
         try {

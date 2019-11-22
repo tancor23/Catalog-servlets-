@@ -12,6 +12,7 @@ public class UpdateUserPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         req.setAttribute("userId",req.getParameter("userId"));
         req.setAttribute("firstName",req.getParameter("firstName"));
         req.setAttribute("lastName",req.getParameter("lastName"));

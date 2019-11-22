@@ -19,6 +19,7 @@ public class UpdateBookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         long bookId = Long.parseLong(req.getParameter("bookId"));
         int page;
         try {

@@ -29,6 +29,7 @@ public class AddUserBookMappingServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         long userId = Long.parseLong(req.getParameter("userSelect"));
         long bookId = Long.parseLong(req.getParameter("bookSelect"));
         UserBookService userBookService = ServiceFactory.getInstance().getUserBookService();

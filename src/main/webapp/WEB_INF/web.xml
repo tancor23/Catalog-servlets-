@@ -4,12 +4,6 @@
 
     <!--Error pages-->
     <error-page>
-        <error-code>500</error-code>
         <location>/WEB_INF/jsp/error_page.jsp</location>
     </error-page>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/WEB_INF/jsp/error_page.jsp</location>
-    </error-page>
-
 </web-app>

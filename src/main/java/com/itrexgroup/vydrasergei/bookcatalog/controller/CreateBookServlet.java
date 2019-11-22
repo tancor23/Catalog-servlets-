@@ -17,6 +17,7 @@ public class CreateBookServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         int page;
         try {
             page = Integer.parseInt(req.getParameter("countOfPage"));

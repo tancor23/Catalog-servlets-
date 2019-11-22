@@ -12,6 +12,7 @@ public class UpdateBookPageServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         req.setAttribute("bookId",req.getParameter("bookId"));
         req.setAttribute("bookName",req.getParameter("bookName"));
         req.setAttribute("authorName",req.getParameter("authorName"));
