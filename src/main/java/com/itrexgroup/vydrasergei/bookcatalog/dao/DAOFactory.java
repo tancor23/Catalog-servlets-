@@ -24,7 +24,7 @@ public class DAOFactory {
         userBookDAO = new UserBookDAOImpl(datasource);
     }
 
-    public static DAOFactory getInstance() {
+    public static synchronized DAOFactory getInstance() {
         if (instance == null) {
             instance = new DAOFactory();
         }

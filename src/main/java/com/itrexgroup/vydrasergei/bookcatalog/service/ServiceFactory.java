@@ -27,7 +27,7 @@ public class ServiceFactory {
         userBookService.setBookDAO(daoFactory.getBookDAO());
     }
 
-    public static ServiceFactory getInstance() {
+    public static synchronized ServiceFactory getInstance() {
         if (instance == null) {
             instance = new ServiceFactory();
         }

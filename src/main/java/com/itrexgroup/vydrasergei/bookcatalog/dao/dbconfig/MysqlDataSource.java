@@ -58,7 +58,7 @@ public class MysqlDataSource implements Datasource {
     }
 
     @Override
-    public void init() throws SQLException {
+    public void  init() throws SQLException {
         try {
             Class.forName(this.driverName);
         } catch (ClassNotFoundException e) {
