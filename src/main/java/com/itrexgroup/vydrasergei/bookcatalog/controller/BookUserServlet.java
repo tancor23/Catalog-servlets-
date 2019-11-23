@@ -26,17 +26,17 @@ public class BookUserServlet extends HttpServlet {
         BookService bookService = ServiceFactory.getInstance().getBookService();
         req.setCharacterEncoding("UTF-8");
         long id = Long.parseLong(req.getParameter("bookId"));
-        Book book = new Book();
+        Book book;
         try {
             book = bookService.findBook(id);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("BookUserServlet doPost(bookService.findBook())", e);
         }
-        List<User> allMappedUserOfBook = new ArrayList<>();
+        List<User> allMappedUserOfBook;
         try {
             allMappedUserOfBook = userBookService.getAllMappedUserOfBook(id);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("BookUserServlet doPost(userBookService.getAllMappedUserOfBook())", e);
         }
         List<String> userNames = getFullNameOfUser(allMappedUserOfBook);
 

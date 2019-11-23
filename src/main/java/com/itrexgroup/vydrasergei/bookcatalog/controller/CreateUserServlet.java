@@ -23,7 +23,7 @@ public class CreateUserServlet extends HttpServlet {
         try {
             userService.create(user);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("CreateUserServlet doPost(userService.create())", e);
         }
         req.getRequestDispatcher("/start").forward(req, resp);
     }

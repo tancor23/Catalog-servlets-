@@ -37,30 +37,29 @@ public class AddUserBookMappingServlet extends HttpServlet {
             userBookService.createByIds(userId, bookId);
             req.setAttribute("alert", "Successful");
         } catch (ServiceException e) {
-            e.printStackTrace();
             req.setAttribute("alert", "This mapping is already in DB");
         }
         doGet(req,resp);
     }
 
-    private List<User> prepareAllUsers(){
+    private List<User> prepareAllUsers() throws ServletException {
         UserService userService = ServiceFactory.getInstance().getUserService();
-        List<User> users = new ArrayList<>();
+        List<User> users;
         try {
             users = userService.getAllUsers();
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("AddUserBookMappingServlet prepareAllUsers()", e);
         }
         return users;
     }
 
-    private List<Book> prepareAllBooks(){
+    private List<Book> prepareAllBooks() throws ServletException {
         BookService userService = ServiceFactory.getInstance().getBookService();
-        List<Book> books = new ArrayList<>();
+        List<Book> books;
         try {
             books = userService.getAllBooks();
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("AddUserBookMappingServlet prepareAllBooks()", e);
         }
         return books;
     }

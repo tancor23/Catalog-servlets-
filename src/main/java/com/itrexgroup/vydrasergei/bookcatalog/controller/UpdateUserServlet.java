@@ -25,7 +25,7 @@ public class UpdateUserServlet extends HttpServlet {
         try {
             userService.editUser(user);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("UpdateUserServlet doPost()", e);
         }
         req.getRequestDispatcher("/start").forward(req, resp);
     }

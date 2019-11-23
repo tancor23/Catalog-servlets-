@@ -33,10 +33,9 @@ public class UpdateBookServlet extends HttpServlet {
         try {
             bookService.editBook(book);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("UpdateBookServlet doPost()", e);
         }
         req.getRequestDispatcher("/start").forward(req, resp);
     }
 
 }
-

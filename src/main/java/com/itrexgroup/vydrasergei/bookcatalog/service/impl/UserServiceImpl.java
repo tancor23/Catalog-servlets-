@@ -1,8 +1,7 @@
 package com.itrexgroup.vydrasergei.bookcatalog.service.impl;
 
-import com.itrexgroup.vydrasergei.bookcatalog.dao.DAOException;
+import com.itrexgroup.vydrasergei.bookcatalog.dao.exception.DAOException;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.mysql.UserDAO;
-import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.Book;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;
 import com.itrexgroup.vydrasergei.bookcatalog.service.UserService;
 import com.itrexgroup.vydrasergei.bookcatalog.service.exception.ServiceException;
@@ -16,78 +15,68 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Override
-    public User create(User user) throws ServiceException {
+    public void create(final User user) throws ServiceException {
         if (user != null) {
             try {
-                LOGGER.info("Created user in UserServiceImpl");
                 if (userDAO.createUser(user.getFirstName(), user.getLastName())) {
-                    user = userDAO.getUserInDB(user.getFirstName(), user.getLastName());
+                    LOGGER.info("UserServiceImpl create(), User was created");
                 } else {
-                    LOGGER.warn("User was not created in DB");
+                    LOGGER.info("UserServiceImpl create(), User was NOT created");
                 }
             } catch (DAOException e) {
-                LOGGER.error("User was not created, DAOException exception");
-                throw new ServiceException("User object is null");
+                throw new ServiceException("UserServiceImpl create()", e);
             }
         } else {
-            LOGGER.error("User object is null");
-            throw new ServiceException("User object is null");
+            throw new ServiceException("UserServiceImpl create(), User object is null");
         }
-        return user;
     }
 
     @Override
     public User findUser(Long userId) throws ServiceException {
-        User user = null;
+        User user;
         try {
             user = userDAO.findById(userId);
         } catch (DAOException e) {
-            LOGGER.error("User was not found, DAOException exception");
-            throw new ServiceException("findUser(), DAOException exception");
+            throw new ServiceException("UserServiceImpl findUser()", e);
         }
         return user;
     }
 
     @Override
-    public void editUser(User user) throws ServiceException {
+    public boolean editUser(final User user) throws ServiceException {
         try {
-            userDAO.update(user);
+            return userDAO.update(user);
         } catch (DAOException e) {
-            LOGGER.error("User was not updated, DAOException exception");
-            throw new ServiceException("editUser(), DAOException exception");
+            throw new ServiceException("UserServiceImpl editUser()", e);
         }
     }
 
     @Override
     public List<User> getAllUsers() throws ServiceException {
-        List<User> users = null;
+        List<User> users;
         try {
             users = userDAO.findAll();
         } catch (DAOException e) {
-            LOGGER.error("Users were not selected from DB, DAOException exception");
-            throw new ServiceException("getAllUsers(), DAOException exception");
+            throw new ServiceException("UserServiceImpl getAllUsers()", e);
         }
         return users;
     }
 
     @Override
-    public void setUserDAO(UserDAO userDAO) {
+    public void setUserDAO(final UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
     @Override
     public boolean remove(Long userId) throws ServiceException {
-        boolean isUserDeleted = false;
         try {
-            isUserDeleted = userDAO.delete(userId);
+            return userDAO.delete(userId);
         } catch (DAOException e) {
-            LOGGER.error("Users were not removed from DB, DAOException exception");
-            throw new ServiceException("remove(), DAOException exception");
+            throw new ServiceException("UserServiceImpl remove()");
         }
-        return isUserDeleted;
     }
 
-    public boolean remove(User user) throws ServiceException {
+    public boolean remove(final User user) throws ServiceException {
         return remove(user.getId());
     }
 

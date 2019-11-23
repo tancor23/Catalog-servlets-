@@ -23,7 +23,7 @@ public class DeleteBookServlet extends HttpServlet {
         try {
             bookService.remove(id);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("DeleteBookServlet doPost(bookService.remove())", e);
         }
         req.getRequestDispatcher("/start").forward(req, resp);
     }

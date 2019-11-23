@@ -29,7 +29,7 @@ public class CreateBookServlet extends HttpServlet {
         try {
             bookService.create(book);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("CreateBookServlet doPost(bookService.create())", e);
         }
         req.getRequestDispatcher("/start").forward(req, resp);
     }

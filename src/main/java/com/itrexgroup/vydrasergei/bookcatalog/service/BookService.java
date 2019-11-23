@@ -8,13 +8,11 @@ import java.util.List;
 
 public interface BookService {
 
-    boolean isBookExists(String name, String author) throws ServiceException;
-
-    Book create(Book book) throws ServiceException;
+    void create(Book book) throws ServiceException;
 
     Book findBook(Long bookId) throws ServiceException;
 
-    void editBook(Book book) throws ServiceException;
+    boolean editBook(Book book) throws ServiceException;
 
     List<Book> getAllBooks() throws ServiceException;
 

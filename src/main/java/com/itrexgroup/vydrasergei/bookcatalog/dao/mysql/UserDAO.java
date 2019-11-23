@@ -1,6 +1,6 @@
 package com.itrexgroup.vydrasergei.bookcatalog.dao.mysql;
 
-import com.itrexgroup.vydrasergei.bookcatalog.dao.DAOException;
+import com.itrexgroup.vydrasergei.bookcatalog.dao.exception.DAOException;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.GenericDAO;
 import com.itrexgroup.vydrasergei.bookcatalog.dao.dbconfig.Datasource;
 import com.itrexgroup.vydrasergei.bookcatalog.domain.entity.User;

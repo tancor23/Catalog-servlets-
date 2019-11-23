@@ -32,24 +32,24 @@ public class MainServlet extends HttpServlet {
         doGet(req,resp);
     }
 
-    private List<User> prepareAllUsers(){
+    private List<User> prepareAllUsers() throws ServletException {
         UserService userService = ServiceFactory.getInstance().getUserService();
-        List<User> users = new ArrayList<>();
+        List<User> users;
         try {
             users = userService.getAllUsers();
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("MainServlet prepareAllUsers(userService.remove())", e);
         }
         return users;
     }
 
-    private List<Book> prepareAllBooks(){
+    private List<Book> prepareAllBooks() throws ServletException {
         BookService userService = ServiceFactory.getInstance().getBookService();
-        List<Book> books = new ArrayList<>();
+        List<Book> books;
         try {
             books = userService.getAllBooks();
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("MainServlet prepareAllBooks(userService.getAllBooks())", e);
         }
         return books;
     }

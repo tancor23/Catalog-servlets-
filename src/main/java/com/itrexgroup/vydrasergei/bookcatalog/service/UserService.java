@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface UserService {
 
-    User create(User user) throws ServiceException;
+    void create(User user) throws ServiceException;
 
     User findUser(Long userId) throws ServiceException;
 
-    void editUser(User user) throws ServiceException;
+    boolean editUser(User user) throws ServiceException;
 
     List<User> getAllUsers() throws ServiceException;
 

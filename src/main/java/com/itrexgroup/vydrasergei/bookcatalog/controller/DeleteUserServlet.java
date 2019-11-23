@@ -23,7 +23,7 @@ public class DeleteUserServlet extends HttpServlet {
         try {
             userService.remove(id);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServletException("DeleteUserServlet doPost(userService.remove())", e);
         }
         req.getRequestDispatcher("/start").forward(req, resp);
     }
