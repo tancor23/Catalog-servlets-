@@ -16,7 +16,7 @@ public class UpdateUserPageServlet extends HttpServlet {
         req.setAttribute("userId",req.getParameter("userId"));
         req.setAttribute("firstName",req.getParameter("firstName"));
         req.setAttribute("lastName",req.getParameter("lastName"));
-        req.getRequestDispatcher("WEB_INF/jsp/update_user_page.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB_INF/jsp/update_user_page.jsp").forward(req, resp);
     }
 
 }

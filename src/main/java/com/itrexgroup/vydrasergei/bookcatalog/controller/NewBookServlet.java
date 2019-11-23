@@ -12,7 +12,7 @@ public class NewBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("WEB_INF/jsp/create_book_page.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB_INF/jsp/create_book_page.jsp").forward(req, resp);
     }
 
 }

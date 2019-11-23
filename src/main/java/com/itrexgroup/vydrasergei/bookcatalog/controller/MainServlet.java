@@ -23,7 +23,7 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("users", prepareAllUsers());
         req.setAttribute("books", prepareAllBooks());
-        req.getRequestDispatcher("WEB_INF/jsp/main_page.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB_INF/jsp/main_page.jsp").forward(req, resp);
     }
 
     

@@ -42,7 +42,7 @@ public class UserBookServlet extends HttpServlet {
         req.setAttribute("lastName", user.getLastName());
         req.setAttribute("userBookNames", nameOfBooks);
         req.setAttribute("userBookNameSize", nameOfBooks.size());
-        req.getRequestDispatcher("WEB_INF/jsp/user_book_page.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB_INF/jsp/user_book_page.jsp").forward(req, resp);
     }
 
     private List<String> getNameOfBooks(List<Book> books){

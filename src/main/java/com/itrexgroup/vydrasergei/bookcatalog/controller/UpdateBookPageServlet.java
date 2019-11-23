@@ -17,7 +17,7 @@ public class UpdateBookPageServlet extends HttpServlet {
         req.setAttribute("bookName",req.getParameter("bookName"));
         req.setAttribute("authorName",req.getParameter("authorName"));
         req.setAttribute("countOfPage",req.getParameter("countOfPage"));
-        req.getRequestDispatcher("WEB_INF/jsp/update_book_page.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB_INF/jsp/update_book_page.jsp").forward(req, resp);
     }
 
 }
