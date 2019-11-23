@@ -26,7 +26,11 @@ public class DAOFactory {
 
     public static synchronized DAOFactory getInstance() {
         if (instance == null) {
-            instance = new DAOFactory();
+            synchronized (DAOFactory.class) {
+                if (instance == null) {
+                    instance = new DAOFactory();
+                }
+            }
         }
         return instance;
     }

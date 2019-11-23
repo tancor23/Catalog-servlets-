@@ -28,8 +28,12 @@ public class ServiceFactory {
     }
 
     public static synchronized ServiceFactory getInstance() {
-        if (instance == null) {
-            instance = new ServiceFactory();
+        if(instance == null) {
+            synchronized (ServiceFactory.class) {
+                if (instance == null) {
+                    instance = new ServiceFactory();
+                }
+            }
         }
         return instance;
     }
