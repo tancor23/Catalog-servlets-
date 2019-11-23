@@ -21,9 +21,6 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("doGet method()");
-
-
         req.setAttribute("users", prepareAllUsers());
         req.setAttribute("books", prepareAllBooks());
         req.getRequestDispatcher("WEB_INF/jsp/main_page.jsp").forward(req, resp);

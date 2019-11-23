@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/create_new_book")
+@WebServlet("/book/create")
 public class CreateBookServlet extends HttpServlet {
 
     @Override

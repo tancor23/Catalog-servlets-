@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/new_book")
+@WebServlet("/book")
 public class NewBookServlet extends HttpServlet {
 
     @Override

@@ -11,7 +11,7 @@
 
 <div id="container">
     <div class="createBookForm">
-        <form method="post" action="${pageContext.request.contextPath}/update_book">
+        <form method="post" action="${pageContext.request.contextPath}/book/update">
             <input type="hidden" name="bookId" value="${requestScope.bookId}"/>
             First name: <label><input type="text" name="bookName" required/></label> Previous value: ${requestScope.bookName}<br>
             Last name: <label><input type="text" name="authorName" required/></label> Previous value: ${requestScope.authorName}<br>

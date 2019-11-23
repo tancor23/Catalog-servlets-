@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/add_user_book_mapping")
+@WebServlet("/user_book/add_mapping")
 public class AddUserBookMappingServlet extends HttpServlet {
 
     @Override

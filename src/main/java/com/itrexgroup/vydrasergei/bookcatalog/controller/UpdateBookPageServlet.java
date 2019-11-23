@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/update_book_page")
+@WebServlet("/book/update_page")
 public class UpdateBookPageServlet extends HttpServlet {
 
     @Override

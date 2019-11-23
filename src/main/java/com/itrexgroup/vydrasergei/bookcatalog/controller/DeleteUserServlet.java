@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete_user")
+@WebServlet("/user/delete")
 public class DeleteUserServlet extends HttpServlet {
 
     @Override

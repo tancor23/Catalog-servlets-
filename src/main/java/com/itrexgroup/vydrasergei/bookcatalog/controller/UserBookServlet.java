@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet("/user_book_page")
+@WebServlet("/user_book")
 public class UserBookServlet extends HttpServlet {
 
     @Override

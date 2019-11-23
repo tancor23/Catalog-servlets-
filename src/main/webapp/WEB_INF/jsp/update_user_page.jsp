@@ -11,7 +11,7 @@
 
 <div id="container">
     <div class="createUserForm">
-        <form method="post" action="${pageContext.request.contextPath}/update_user">
+        <form method="post" action="${pageContext.request.contextPath}/user/update">
             <input type="hidden" name="userId" value="${requestScope.userId}"/>
             First name: <label><input type="text" name="firstName" required/></label> Previous value: ${requestScope.firstName}<br>
             Last name: <label><input type="text" name="lastName" required/></label> Previous value: ${requestScope.lastName}<br>

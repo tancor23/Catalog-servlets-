@@ -11,7 +11,7 @@
 
 <div id="container">
     <div class="createUserForm">
-        <form method="post" action="${pageContext.request.contextPath}/create_new_user">
+        <form method="post" action="${pageContext.request.contextPath}/user/create">
             First name: <label><input type="text" name="firstName" required/></label><br>
             Last name: <label><input type="text" name="lastName" required/></label><br>
             <input type="submit" value="Add">

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/create_new_user")
+@WebServlet("/user/create")
 public class CreateUserServlet extends HttpServlet {
 
     @Override

@@ -4,6 +4,7 @@
 
     <!--Error pages-->
     <error-page>
-        <location>/WEB_INF/jsp/error_page.jsp</location>
+        <error-code>404</error-code>
+        <location>/resources/html/404page.html</location>
     </error-page>
 </web-app>

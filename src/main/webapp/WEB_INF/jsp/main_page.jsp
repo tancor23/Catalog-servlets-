@@ -32,13 +32,13 @@
                     <td class="last_name">${user.lastName}</td>
                     <td class="created_at">${user.createdAt}</td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/delete_user">
+                        <form method="post" action="${pageContext.request.contextPath}/user/delete">
                             <input type="hidden" name="userId" value="${user.id}"/>
                             <input type="submit" name="delete" value="Delete"/>
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/update_user_page">
+                        <form method="post" action="${pageContext.request.contextPath}/user/update_page">
                             <input type="hidden" name="userId" value="${user.id}"/>
                             <input type="hidden" name="firstName" value="${user.firstName}"/>
                             <input type="hidden" name="lastName" value="${user.lastName}"/>
@@ -46,7 +46,7 @@
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/user_book_page">
+                        <form method="post" action="${pageContext.request.contextPath}/user_book">
                             <input type="hidden" name="userId" value="${user.id}"/>
                             <input type="submit" name="books" value="Books"/>
                         </form>
@@ -54,7 +54,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <form method="get" action="${pageContext.request.contextPath}/new_user">
+        <form method="get" action="${pageContext.request.contextPath}/user">
             <input type="submit" name="createUser" value="Create New User"/>
         </form>
     </div>
@@ -74,13 +74,13 @@
                     <td class="author_name">${book.author}</td>
                     <td class="count_of_page">${book.page}</td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/delete_book">
+                        <form method="post" action="${pageContext.request.contextPath}/book/delete">
                             <input type="hidden" name="bookId" value="${book.id}"/>
                             <input type="submit" name="delete" value="Delete"/>
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/update_book_page">
+                        <form method="post" action="${pageContext.request.contextPath}/book/update_page">
                             <input type="hidden" name="bookId" value="${book.id}"/>
                             <input type="hidden" name="bookName" value="${book.name}"/>
                             <input type="hidden" name="authorName" value="${book.author}"/>
@@ -89,7 +89,7 @@
                         </form>
                     </td>
                     <td>
-                        <form method="post" action="${pageContext.request.contextPath}/book_user_page">
+                        <form method="post" action="${pageContext.request.contextPath}/book_user">
                             <input type="hidden" name="bookId" value="${book.id}"/>
                             <input type="submit" name="users" value="Users"/>
                         </form>
@@ -97,14 +97,14 @@
                 </tr>
             </c:forEach>
         </table>
-        <form method="get" action="${pageContext.request.contextPath}/new_book">
-            <input type="submit" name="createUser" value="Create New Book"/>
+        <form method="get" action="${pageContext.request.contextPath}/book">
+            <input type="submit" name="createBook" value="Create New Book"/>
         </form>
     </div>
 
     <div id="UserBookMappingContainer">
         <br>
-        <form method="get" action="${pageContext.request.contextPath}/add_user_book_mapping">
+        <form method="get" action="${pageContext.request.contextPath}/user_book/add_mapping">
             <input type="submit" name="createUser" value="Add User-Book Mapping"/>
         </form>
     </div>

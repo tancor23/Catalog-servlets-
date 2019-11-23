@@ -22,7 +22,7 @@
 <div id="container">
     <div class="userBookMappingForm">
         <h1>User-Book Mapping</h1>
-        <form method="post" action="${pageContext.request.contextPath}/add_user_book_mapping">
+        <form method="post" action="${pageContext.request.contextPath}/user_book/add_mapping">
             Select User(s):&nbsp;
             <label>
                 <select name="userSelect" required>
